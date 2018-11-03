@@ -1,0 +1,105 @@
+<#include "/common/layout.html">
+<@header>
+<link rel="stylesheet" media="screen" href="../../../app/css/style.css">
+
+</@header>
+<@body>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <small>项目管理 > 用例列表</small>
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+           <form action="/u/testcase/list/1" method="post" class="form-inline">
+	          <div class="box-header">
+	            <div class="input-group">
+		            <a class="btn btn-primary dialog" href="javascript:;" data-url="/u/testcase/add" data-title="创建新用例" data-width="850" data-height="550"><i class="fa fa-plus"></i> 创建新用例</a>
+	            </div>
+	            <div class="input-group">
+	               <input type="text" name="search" value="${search!}" class="form-control" placeholder="Search">
+	               <div class="input-group-btn">
+	                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+	                 <a href="/u/testcase/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+	               </div>
+	            </div>
+	            <div class="input-group pull-right">
+                 <button type="button" class="btn btn-primary btn-flat" onclick="exportTo('用例数据');"><i class="fa fa-file-excel-o"></i> 导出</button>
+            </div>
+	          </div><!-- /.box-header -->
+           </form>
+          <div class="box-body table-responsive no-padding">
+            <table class="table  table-striped table-content">
+				<thead>
+				<tr>
+					<th style="width: 50px">行号</th>
+					<th>用例名称</th>
+					<th>接口地址</th>
+					<th style="width: 150px">接口参数</th>
+					<th>参数类型</th>
+					<th>项目名称</th>
+					<th style="width: 150px">创建时间</th>
+					<th style="width: 50px">备注</th>
+					<th style='text-align: center;'width="120px">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<#list pageData.getRecords() as testcase>
+				<tr>
+				<tr>
+					<td>
+						<label>
+							${((pageData.current-1)*pageData.size +testcase_index+1)!}
+						</label>
+					</td>
+					<td class="content table-content-hidden">${(testcase.testcaseName)!}</td>
+					<td class="content table-content-hidden">${(testcase.path)!}</td>
+					<td class="content table-content-hidden">${(testcase.parameter)!}</td>
+					<td class="content table-content-hidden">${(testcase.contenttype)!}</td>
+					<td class="content table-content-hidden">${(testcase.projectName)!'--'}</td>
+					<td class="content table-content-hidden">${(testcase.createTime?string('yyyy/MM/dd HH:mm:ss'))!}</td>
+					<td class="content table-content-hidden">${(testcase.comment)!'--'}</td>
+					<td>
+						<div style='text-align: center;'>
+							<a class="fa fa-pencil-square-o dialog" href="javascript:;" data-url="/u/testcase/edit/${(testcase.id)!}" data-title="编辑用例" data-width="850" data-height="400" data-toggle="tooltip" title="编辑" data-placement="bottom"></a>
+							<a class="fa fa-times" data-toggle="tooltip" title="删除" data-placement="bottom"
+							   data-tiggle="ajax"
+							   data-submit-url="/u/testcase/delete?id=${(testcase.id)!}"
+							   data-confirm="您确定要删除该条记录吗?"></a>
+							<a class="fa fa-rocket" data-toggle="tooltip" title="执行用例" data-placement="bottom"
+							   data-tiggle="ajax"
+							   data-submit-url=""
+							   data-confirm="您确定要执行单个用例测试吗?"></a>
+							<a class="fa fa-search dialog" href="javascript:;" data-url="/u/testcase/caseresult/${(testcase.id)!}" data-title="查看结果" data-width="600" data-height="400" data-toggle="tooltip" title="查看结果" data-placement="bottom"></a>
+
+						</div>
+					</td>
+				</tr>
+				</#list>
+				</tbody>
+            </table>
+          </div><!-- /.box-body -->
+          <div class="box-footer row">
+            <div class="col-md-6">
+         	  <#include "/common/paginateBar.html" />
+	  		  <@paginate pageData=pageData actionUrl="/u/testcase/list/" urlParas="?search=${search!}&daterange=${daterange!}"  />
+            </div>
+            <div class="col-md-6 pull-left">
+	             <#include "/common/paginate.html" />
+	  			 <@paginate currentPage=pageData.getCurrent() totalPage=pageData.getPages() actionUrl="/u/testcase/list/" urlParas="?search=${search!}&pageSize=${pageSize!}"  />
+            </div>
+          </div>
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+</@footer>

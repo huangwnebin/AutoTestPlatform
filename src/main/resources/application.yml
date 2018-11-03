@@ -1,0 +1,43 @@
+server:
+  port: 9999
+
+spring:
+    datasource:
+          druid:
+                type : com.alibaba.druid.pool.DruidDataSource  
+                url : jdbc:mysql://localhost/demo?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8
+                username: root
+                password : admin
+                driverClassName : com.mysql.jdbc.Driver  
+                initialSize: 5  
+                minIdle: 5  
+                maxActive: 20  
+                maxWait: 60000  
+                timeBetweenEvictionRunsMillis: 60000  
+                minEvictableIdleTimeMillis: 300000  
+                validationQuery: SELECT 1 FROM DUAL  
+                testWhileIdle: true  
+                testOnBorrow: false  
+                testOnReturn: false  
+                poolPreparedStatements: true  
+                maxPoolPreparedStatementPerConnectionSize: 20  
+                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000  
+    freemarker:
+       prefix: .html
+       content-type: text/html 
+       expose-spring-macro-helpers: false
+       expose-session-attributes: false
+       expose-request-attributes: false
+       templateLoaderPath : classpath:/templates/
+       settings:
+          classic_compatible: true
+          template_update_delay: 0
+          default_encoding: UTF-8
+          number_format: 0
+          datetime_format: 0.##########
+          template_exception_handler: ignore
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.luckin.entity

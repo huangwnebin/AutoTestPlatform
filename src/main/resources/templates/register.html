@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>瑞幸咖啡自动化测试平台用户登陆</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen" href="app/css/style.css">
+    <link rel="stylesheet" type="text/css" href="app/css/reset.css"/>
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css">
+</head>
+<body>
+<div id="particles-js">
+    <div class="reg">
+        <form class="form-horizontal layui-form layui-form-pane" method="post" action="/register/doRegister">
+            <div style="text-align:center">
+                <div class="logo"><img src="app/images/logo.png"/></div>
+            </div>
+
+            <div class="login-center clearfix">
+                <div class="login-center-img"><img src="app/images/username.png"/></div>
+                <div class="login-center-input">
+                    <input type="text" id="uname" name="userName" class="form-control" placeholder="请输入用户名" lay-verify="required|username|check" check-url="/register/checkName">
+                    <div class="login-center-input-text">用户名</div>
+                </div>
+            </div>
+
+            <div class="login-center clearfix">
+                <div class="login-center-img"><img src="app/images/password.png"/></div>
+                <div class="login-center-input">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" lay-verify="required|pass">
+                    <div class="login-center-input-text">密码</div>
+                </div>
+            </div>
+            <div class="login-center clearfix">
+                <div class="login-center-img"><img src="app/images/password.png"/></div>
+                <div class="login-center-input">
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="请再次输入密码" lay-verify="required|pass|eqPwd">
+                    <div class="login-center-input-text">确认密码</div>
+                </div>
+            </div>
+
+            <div style="text-align:center">
+                <button type="submit"  class="submitbutton" lay-submit lay-filter="submit">注册</button>
+            </div>
+            <div style="text-align:right">
+                <a href="/login" class="regesiter" type="button">立即登陆</a>
+            </div>
+
+            <div style="text-align:center">
+                <p class="copyright">瑞幸咖啡自动化测试平台©LuckinCoffee</p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+
+<script src="/plugins/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.config({
+        version:true,
+        debug:true,
+        base: '/app/js/modules_register/'
+    }).use('xform'); //加载入口
+
+</script>
+</html>

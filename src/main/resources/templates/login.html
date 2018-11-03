@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>瑞幸咖啡自动化测试平台用户登陆</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="app/css/style.css">
+  <link rel="stylesheet" type="text/css" href="app/css/reset.css"/>
+</head>
+<body>
+
+<div id="particles-js">
+		<div class="login">
+			<form action="/login/doLogin" data-validator-option="{theme:'bootstrap', timely:2, theme:'simple_bottom'}" method="post">
+
+				<div style="text-align:center">
+					<div class="logo"><img src="app/images/logo.png"/></div>
+				</div>
+				<div class="login-center clearfix">
+					<div class="login-center-img"><img src="app/images/username.png"/></div>
+					<div class="login-center-input">
+						<input type="text" name="userName"  id="userName" data-rule="用户名:required;username;" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的用户名'"/>
+						<div class="login-center-input-text">用户名</div>
+					</div>
+				</div>
+				
+				<div class="login-center clearfix">
+					<div class="login-center-img"><img src="app/images/password.png"/></div>
+					<div class="login-center-input">
+						<input type="password" name="password" id="password" data-rule="密码:required;password;" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'"/>
+						<div class="login-center-input-text">密码</div>
+					</div>
+				</div>
+
+				<div style="text-align:center">
+					<button class="submitbutton" value="">登录</button>
+				</div>
+
+
+				<div style="text-align:right">
+					<a href="/register" class="regesiter" type="submit">立即注册</a>
+				</div>
+				<#if error??>
+					<div  class="error-label" style="text-align:center">
+						<h4 style="margin-bottom: 0px;"><i class="fa fa-exclamation-triangle"></i> ${error!}</h4>
+					</div>
+				</#if>
+
+				<div style="text-align:center">
+					<p class="copyright">瑞幸咖啡自动化测试平台©LuckinCoffee</p>
+				</div>
+			</form>
+
+		</div>
+		<div class="sk-rotating-plane"></div>
+</div>
+
+
+</body>
+</html>
